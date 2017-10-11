@@ -1,0 +1,28 @@
+* Agenda (From Problem Statement Requirements) 
+** "really hammer out what, exactly, your project is intended to be" 
+** Determine concrete performance metrics 
+ 
+* Discussion Questions (Chris) 
+** Verify scope: Help with studying and composing music via the lens of music theory. 
+** Training vs. Teaching. How much will it teach vs. Train. 
+** Teaching: how will the teaching components be presented? Ideas: 
+*** Interactively (game) with instructions. 
+*** Plain text/images. 
+*** Video. 
+* Training:  
+** Which skills to train? 
+** How to design?  
+*** Pre-designed training modules
+*** Algorithmically created challenges 
+** Determine levels of difficulty? 
+** Track metrics to determine progress? 
+** Game? "Sandbox"? 
+** How much feedback? Instant? After groups of challenges? 
+* Distribution: 
+** Course packs that are sold separately? (In-app purchases) 
+*** Jazz course pack 
+*** Classical course pack 
+** Etc. 
+** Which platforms?  
+*** IOS and Android simultaneously? One first then port? 
+*** Phones? Tablets? Notebooks? Laptops? Desktops? 
