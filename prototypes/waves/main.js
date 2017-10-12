@@ -1,9 +1,15 @@
+function e(type) { return document.createElement(type); }
+function addElements(elts) { 
+	for (var i = 0; i < elts.length; i++) 
+		document.body.appendChild(elts[i]);
+}
+
 function table(elts) {
-	var t = document.createElement("t");
+	var t = e("t");
 	for (var i = 0; i < elts.length; i++) {
-		var r = document.createElement("tr");
+		var r = e("tr");
 		for (var j = 0; j < elts[i].length; j++) {
-			var d = document.createElement("td");
+			var d = e("td");
 			d.appendChild(elts[i][j]);
 			r.appendChild(d);
 		}
@@ -13,7 +19,7 @@ function table(elts) {
 }
 
 function range(value, min, max) {
-	var x = document.createElement("input");
+	var x = e("input");
 	x.type = "range";
 	x.min = min;
 	x.max = max;
@@ -21,8 +27,22 @@ function range(value, min, max) {
 	return x;
 }
 
+function select(options) {
+	var elt = e("select");
+	for (var i = 0; i < options.length; i++) {
+		var c = e("option");
+		c.value = i;
+		c.innerHTML = options[i];
+		elt.appendChild(c);
+	}
+	return elt;
+}
+
+function div() { return e("div"); }
+function br() { return e("br"); }
+
 function rangeView(r) {
-	var t = document.createElement("div");
+	var t = e("div");
 	t.innerHTML = r.value;
 	oninputorchange(r, function () {
 		t.innerHTML = r.value;
@@ -62,7 +82,7 @@ function oninputorchange(elt, f) {
 }
 
 function noteRangeView(r) {
-	var t = document.createElement("div");
+	var t = e("div");
 	t.innerHTML = noteFromRangeIdx(r.value);
 	oninputorchange(r, function () {
 		t.innerHTML = noteFromRangeIdx(r.value);
@@ -89,7 +109,7 @@ function canvasSine(c, v) {
 }
 
 function canvas(r) {
-	var c = document.createElement("canvas");
+	var c = e("canvas");
 	canvasSine(c, r.value);
 	oninputorchange(r, function () {
 		canvasSine(c, r.value);
@@ -229,10 +249,6 @@ function syncIntervalText(intervalText, intervalDescription, semitones) {
 	}
 }
 
-function div() {
-	return document.createElement("div");
-}
-
 function syncInterval(o1, o2, intervalText, intervalDescription) {
 	var semitones = calculateInterval(o1.waveRange.value, o2.waveRange.value);
 	if (semitones != -1) {
@@ -242,35 +258,21 @@ function syncInterval(o1, o2, intervalText, intervalDescription) {
 	syncIntervalText(intervalText, intervalDescription, semitones);
 }
 
-function select(options) {
-	var e = document.createElement("select");
-	for (var i = 0; i < options.length; i++) {
-		var c = document.createElement("option");
-		c.value = i;
-		c.innerHTML = options[i];
-		e.appendChild(c);
-	}
-	return e;
-}
-
-function br() {
-	document.body.appendChild(document.createElement("br"));
-}
-
 window.onload = function() {
 	var o1 = {}, o2 = {}, intervalText, intervalDescription, intervalSelect;
-	document.body.appendChild(table([
+	addElements([
+		table([
 				[o1.waveRange = range(2, 1, 17), rangeView(o1.waveRange), canvas(o1.waveRange),
 				o1.noteRange = range(3, 0, 11), noteRangeView(o1.noteRange),
 				o1.octaveRange = range(4, 2, 6), rangeView(o1.octaveRange)],
 				[o2.waveRange = range(2, 1, 17), rangeView(o2.waveRange), canvas(o2.waveRange),
 				o2.noteRange = range(0, 0, 11), noteRangeView(o2.noteRange),
 				o2.octaveRange = range(4, 2, 6), rangeView(o2.octaveRange)],
-				[intervalText = div()]]));
-	br();
-	document.body.appendChild(intervalSelect = select(intervals));
-	br();
-	document.body.appendChild(intervalDescription = div());
+				[intervalText = div()]]),
+		br(),
+		intervalSelect = select(intervals),
+		br(),
+		intervalDescription = div()]);
 
 	oninput(intervalSelect, function () {
 		var ws = wavesFromInterval(intervalSelect.value);
