@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.10.19)  19 OCT 2017 10:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.10.19)  19 OCT 2017 10:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
-**problem-statement.tex
-(./problem-statement.tex
+**final-problem-statement.tex
+(./final-problem-statement.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 4 languages loaded.
 (./IEEEtran.cls
@@ -174,8 +174,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen135
 \Gm@dimlist=\toks16
 )
-(./problem-statement.aux)
-\openout1 = `problem-statement.aux'.
+(./final-problem-statement.aux)
+\openout1 = `final-problem-statement.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
@@ -225,59 +225,57 @@ LaTeX Font Info:    ... okay on input line 35.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-File: coe_v_spot1.eps Graphic file (type eps)
-<coe_v_spot1.eps>
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <20.075> not available
 (Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <24.09> not available
 (Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 49.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 65.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 67.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8.03> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 65.
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 69.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 67.
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 71.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8.03> on input line 69.
+(Font)              <8.03> on input line 71.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5.62097> on input line 69.
+(Font)              <5.62097> on input line 71.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.015> on input line 69.
-
-[1]
+(Font)              <4.015> on input line 71.
+ [1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <11.04124> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 78.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
-(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 78.
- (./problem-statement.toc)
+(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 80.
+
+(./final-problem-statement.toc)
 \tf@toc=\write3
-\openout3 = `problem-statement.toc'.
+\openout3 = `final-problem-statement.toc'.
 
  [1]
-LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 95.
+LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 98.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.53561> on input line 95.
+(Font)              <9.53561> on input line 98.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6.6749> on input line 95.
+(Font)              <6.6749> on input line 98.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.7678> on input line 95.
+(Font)              <4.7678> on input line 98.
  [2
 
 ] [3
 
 ] [4
 
-] (./problem-statement.aux) ) 
+] (./final-problem-statement.aux) ) 
 Here is how much of TeX's memory you used:
- 2066 strings out of 494986
- 33973 string characters out of 6180381
+ 2061 strings out of 494986
+ 33963 string characters out of 6180381
  91396 words of memory out of 5000000
- 5306 multiletter control sequences out of 15000+600000
- 31029 words of font info for 78 fonts, out of 8000000 for 9000
+ 5303 multiletter control sequences out of 15000+600000
+ 30163 words of font info for 76 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 26i,5n,19p,443b,242s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 26i,5n,19p,477b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on problem-statement.dvi (5 pages, 8880 bytes).
+Output written on final-problem-statement.dvi (5 pages, 9448 bytes).
