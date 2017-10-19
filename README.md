@@ -1,6 +1,8 @@
 # Music-Theory-Application
 Senior Capstone
 
+[github.io](https://kazuriah.github.io/Music-Theory-Application/)
+
 ## Links of Interest to the Grader:
 - 10/19/17 [Final Draft of Problem Statement](Documents/problem-statement/final-draft)
   - [hebertch](Documents/problem-statement/hebertch)
