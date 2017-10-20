@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.10.19)  19 OCT 2017 10:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.10.19)  20 OCT 2017 09:04
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -272,10 +272,10 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Here is how much of TeX's memory you used:
  2061 strings out of 494986
  33963 string characters out of 6180381
- 91396 words of memory out of 5000000
+ 92396 words of memory out of 5000000
  5303 multiletter control sequences out of 15000+600000
  30163 words of font info for 76 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  26i,5n,19p,477b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on final-problem-statement.dvi (5 pages, 9448 bytes).
+Output written on final-problem-statement.dvi (5 pages, 11312 bytes).
