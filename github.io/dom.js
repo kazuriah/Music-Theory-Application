@@ -50,7 +50,7 @@ function button(name, f) {
     return b;
 }
 
-function range(value, min, max) {
+function irange(value, min, max) {
     var x = e("input");
     x.type = "range";
     x.min = min;
@@ -59,7 +59,7 @@ function range(value, min, max) {
     return x;
 }
 
-function select(options, value) {
+function iselect(options, value) {
     var elt = e("select");
     for (var i = 0; i < options.length; i++) {
 	var c = e("option", options[i]);
@@ -70,7 +70,7 @@ function select(options, value) {
     return elt;
 }
 
-function number(value, min, max, step) {
+function inumber(value, min, max, step) {
     var n = e("input");
     n.type = "number";
     n.min = min;
@@ -135,3 +135,10 @@ function escape(str) { return "&" + str + ";"; }
 var emsp = escape("emsp");
 function div(eltsAndStrings) { return e("div", eltsAndStrings); }
 function br() { return e("br"); }
+
+function a(href, eltsAndStrings) {
+	var elt = e("a", eltsAndStrings);
+	elt.href = href;
+	return elt;
+}
+
