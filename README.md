@@ -4,6 +4,7 @@ Senior Capstone
 [github.io](https://kazuriah.github.io/Music-Theory-Application/)
 
 ## Links of Interest to the Grader:
+- 10/27/17 [Rough Draft of Requirements](Documents/requirements/rough-draft)
 - 10/19/17 [Final Draft of Problem Statement](Documents/problem-statement/final-draft)
   - [hebertch](Documents/problem-statement/hebertch)
   - [omalleya](Documents/problem-statement/omalleya)
@@ -11,6 +12,7 @@ Senior Capstone
 
 ## Directory Structure
 - [Documents](Documents): Documents handed in for the Capstone class.
+  - [requirements](Documents/requirements): Drafts of the Requirements documents
   - [problem-statements](Documents/problem-statement): Individual and Final Problem Statement Assignments
   - [latex-template](Documents/latex-template): Capstone-specific templates for LaTex files
 - [notes](notes): Notes for and from meetings.
