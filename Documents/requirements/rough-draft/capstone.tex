@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{setspace}
+\usepackage{pgfgantt}
 
 \usepackage{geometry}
 \geometry{textheight=9.5in, textwidth=7in}
@@ -167,36 +168,34 @@ If this is not possible, the development of this app will be limited to the iPho
 
 \subsection{Interactive Circle Of Fifths: 00}
 \begin{itemize}
-\item Spinnable by user
-\item Correct notes are on the outside of circle and transition correctly when spun
-\item Correct numbering above notes within selected key
+\item User can see correct notes are on the outside of circle
+\item User can change root note of circle
+\item User can see the correct chord quality numberings above notes within selected key
+\item Circle of Fifths sidebar
+    \begin{itemize}
+        \item User can see the notes of the current key in a sidebar
+        \item User can see that the sidebar reflects the correct chord quality based on the current key
+        \item User can visualize the tonal gravity of the current key
+    \end{itemize}
+\item Parallel and Relative Keys within Circle of Fifths
+    \begin{itemize}
+        \item User can add a key’s parallel and relative keys to the circle of fifths iteratively
+        \item User can easily visualize and understand the flow between keys
+        \item User can see the proper numbering of chords in parallel and relative keys
+        \item When user changes the root key, parallel and relative keys change as well
+    \end{itemize}
 \end{itemize}
 
-\subsection{Circle of Fifths sidebar: 01}
-\begin{itemize}
-\item Draggable by user, when dragged, circle of fifths should react by spinning
-\item Sidebar should reflect the correct chord quality based on the current key
-\end{itemize}
-
-\subsection{Parallel and Relative Keys within Circle of Fifths: 02}
-\begin{itemize}
-\item Possible to add a key’s parallel and relative keys to the circle of fifths iteratively
-\item Visually easy to understand the flow between keys
-\item Color coded
-\item Proper numbering of chords in parallel and relative keys
-\item Spacing is correct and doesn’t look cluttered
-\end{itemize}
-
-\subsection{Composition Page: 03}
+\subsection{Composition Page: 01}
 \begin{itemize}
 \item User has ability to create a few measures of chord progression
 \item User has an easy way of inputting chords whether it be with the circle of fifths or an altered keyboard
-\item Application has the ability to properly analyze a composition and determine if a user followed the rules of tonal gravity
+\item User can have the application analyze a composition and determine if they followed the rules of tonal gravity
 \item User has ability to iteratively add parallel and relative keys to the composition analysis
 \end{itemize}
 
 \pagebreak
-\subsection{Reference and Tutorial Pages: 04}
+\subsection{Reference and Tutorial Pages: 02}
 Reference pages are pages of text and non-interactive visuals describing the various music theory concepts.
 \begin{itemize}
 \item Schedule of Tonal Gravity reference page
@@ -216,11 +215,25 @@ Rough Draft Note: Make a Gantt Chart from the following data:
 
 \begin{itemize}
 \item 11/17 - 1/18 Interactive Circle of Fifths: 00
-\item 1/18 - 2/18 Circle of Fifths Sidebar: 01; Depends on 00
-\item 1/18 - 2/18 Parallel and Relative Keys: 02; Depends on 00
-\item 11/17 - 2/18 Composition Page: 03
-\item 11/17 - 2/18 Reference and Tutorial Pages: 04
+\item 11/17 - 2/18 Composition Page: 01
+\item 11/17 - 2/18 Reference and Tutorial Pages: 02
 \end{itemize}
+
+\subsection{Gantt Chart}
+\begin{ganttchart}[hgrid, vgrid]{1}{15}
+    \gantttitle{Fall 2017}{5}
+    \gantttitle{Winter 2018}{5}
+    \gantttitle{Spring 2018}{5} \\
+
+    \ganttbar{Interactive Circle of Fifths: 00}{6}{13} \\
+    \ganttbar{Composition Page: 01}{6}{13} \\
+    \ganttbar{Reference and Tutorial Pages: 02}{6}{13} \\
+
+    \ganttbar{Add Stretch Features and finishing touches}{8}{13} \\
+    \ganttbar{QA Testing}{8}{13} \\
+    \ganttbar{Finalize Project}{13}{14} \\
+
+\end{ganttchart}
 
 
 \end{document}
