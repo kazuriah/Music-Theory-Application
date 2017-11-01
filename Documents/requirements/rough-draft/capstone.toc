@@ -10,8 +10,6 @@
 \contentsline {subsection}{\numberline {2.5}Assumptions and Dependencies}{4}
 \contentsline {section}{\numberline {3}Specific Requirements}{4}
 \contentsline {subsection}{\numberline {3.1}Interactive Circle Of Fifths: 00}{4}
-\contentsline {subsection}{\numberline {3.2}Circle of Fifths sidebar: 01}{4}
-\contentsline {subsection}{\numberline {3.3}Parallel and Relative Keys within Circle of Fifths: 02}{4}
-\contentsline {subsection}{\numberline {3.4}Composition Page: 03}{4}
-\contentsline {subsection}{\numberline {3.5}Reference and Tutorial Pages: 04}{5}
+\contentsline {subsection}{\numberline {3.2}Composition Page: 01}{4}
+\contentsline {subsection}{\numberline {3.3}Reference and Tutorial Pages: 02}{5}
 \contentsline {section}{\numberline {4}Development Flow}{5}
