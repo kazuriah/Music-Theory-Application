@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{setspace}
+\usepackage{pgfgantt}
 
 \usepackage{geometry}
 \geometry{textheight=9.5in, textwidth=7in}
@@ -221,6 +222,27 @@ Rough Draft Note: Make a Gantt Chart from the following data:
 \item 11/17 - 2/18 Composition Page: 03
 \item 11/17 - 2/18 Reference and Tutorial Pages: 04
 \end{itemize}
+
+\subsection{Gantt Chart}
+\begin{ganttchart}[hgrid, vgrid]{1}{15}
+    \gantttitle{Fall 2017}{5}
+    \gantttitle{Winter 2018}{5}
+    \gantttitle{Spring 2018}{5} \\
+
+    \ganttbar{Problem statement}{1.5}{2} \\
+    \ganttbar{Requirements}{2.5}{3} \\
+
+    \ganttbar{Interactive Circle of Fifths}{3}{6} \\
+    \ganttbar{Circle of Fifths Sidebar: 01; Depends on 00}{6}{8} \\
+    \ganttbar{Parallel and Relative Keys: 02; Depends on 00}{6}{8} \\
+    \ganttbar{Composition Page: 03}{3}{8} \\
+    \ganttbar{Reference and Tutorial Pages: 04}{3}{8} \\
+
+    \ganttbar{Add Stretch Features and finishing touches}{5.5}{13} \\
+    \ganttbar{QA Testing}{5.5}{13} \\
+    \ganttbar{Finalize Project}{13}{14} \\
+
+\end{ganttchart}
 
 
 \end{document}
