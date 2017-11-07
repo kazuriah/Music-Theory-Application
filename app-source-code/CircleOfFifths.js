@@ -1,7 +1,7 @@
 /** * Sample React Native App * https://github.com/facebook/react-native */
 import React, { Component } from 'react';
-import { ART, ppRegistry, StyleSheet, Text, TouchableWithoutFeedback, View, PanResponder } from 'react-native';
-const { Group, Shape, Surface, Transform } = ART;
+import { ART, ppRegistry, StyleSheet, Text as NormText, TouchableWithoutFeedback, View, PanResponder } from 'react-native';
+const { Group, Shape, Surface, Transform, Text } = ART;
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
 import * as d3Array from 'd3-array';
@@ -44,6 +44,7 @@ export default class CircleOfFifths extends Component {
         currentTouch: {},
         lastTouch: {},
         rotation: 0,
+        centroids: [],
     }
 
     _value(item) { return item.number; }
@@ -58,6 +59,7 @@ export default class CircleOfFifths extends Component {
             (this.state.data);
 
         var lines = [];
+        var centers = [];
 
         for (var i = 0; i < arcs.length; i++) {
             var path = d3.shape.arc()
@@ -66,11 +68,22 @@ export default class CircleOfFifths extends Component {
                 .innerRadius(30)  // Inner radius: to create a donut or pie
                 (arcs[i]);
 
+            
+            var center = d3.shape.arc()
+                .outerRadius(150 / 2)  // Radius of the pie 
+                .padAngle(.05)    // Angle between sections
+                .innerRadius(30)  // Inner radius: to create a donut or pie
+                .centroid(arcs[i]);
+
+            console.log(center);
             lines.push(path);
+            centers.push(center);
         }
 
         console.log(lines.length);
-        this.setState({ paths: lines });
+        console.log(arcs[0]);
+        console.log(centers);
+        this.setState({ paths: lines, centroids: centers });
     }
 
     _distanceBetweenTwoPoints(first, second) {
@@ -229,16 +242,30 @@ export default class CircleOfFifths extends Component {
             <View {...this._panResponder.panHandlers}>
                 <View style={styles.container}>
                     <Surface width={200} height={200}>
-                        <Group x={x} y={y}>
+                        <Group x={x} y={y} transform={this.rotate}>
                             {
                                 this.state.paths.map((item, index) =>
-                                    (<Shape
-                                        transform={this.rotate}
-                                        key={'pie_shape_' + index}
-                                        fill={this._color(index)}
-                                        stroke={this._color(index)}
-                                        d={item}
-                                    />))
+                                    (
+                                        <Shape
+                                            key={'pie_shape_' + index}
+                                            fill={this._color(index)}
+                                            stroke={this._color(index)}
+                                            d={item}
+                                        />
+                                    ))
+                            }
+                            {
+                                this.state.data.map((item, index) => (
+                                    <Text 
+                                        key={'note_' + index} 
+                                        x={this.state.centroids[index][0] + 95} 
+                                        y={this.state.centroids[index][1] + 95} 
+                                        alignment="middle" 
+                                        fill="#000" 
+                                        font='bold 10px "Arial"'
+                                        transform={new Transform().translate(-100.000000, -100.000000)}
+                                    >{item.name}</Text>
+                                ))
                             }
                         </Group>
                     </Surface>
@@ -251,7 +278,7 @@ export default class CircleOfFifths extends Component {
                             return (
                                 <TouchableWithoutFeedback key={index} onPress={() => this._onPieItemSelected(index)}>
                                     <View>
-                                        <Text style={[styles.label, { color: this._color(index), fontWeight: fontWeight }]}>{this._label(item)}</Text>
+                                        <NormText style={[styles.label, { color: this._color(index), fontWeight: fontWeight }]}>{this._label(item)}</NormText>
                                     </View>
                                 </TouchableWithoutFeedback>
                             );
