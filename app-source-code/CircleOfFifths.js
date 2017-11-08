@@ -258,12 +258,12 @@ export default class CircleOfFifths extends Component {
                                 this.state.data.map((item, index) => (
                                     <Text 
                                         key={'note_' + index} 
-                                        x={this.state.centroids[index][0] + 95} 
-                                        y={this.state.centroids[index][1] + 95} 
+                                        x={this.state.centroids[index][0] + 100} 
+                                        y={this.state.centroids[index][1] + 100} 
                                         alignment="middle" 
                                         fill="#000" 
-                                        font='bold 10px "Arial"'
-                                        transform={new Transform().translate(-100.000000, -100.000000)}
+                                        font='bold 8px "Arial"'
+                                        transform={new Transform().translate(-100.000000, -100.000000).rotate(-this.state.rotation)}
                                     >{item.name}</Text>
                                 ))
                             }
