@@ -1,6 +1,6 @@
 /** * Sample React Native App * https://github.com/facebook/react-native */
 import React, { Component } from 'react';
-import { ART, ppRegistry, StyleSheet, Text as NormText, TouchableWithoutFeedback, View, PanResponder } from 'react-native';
+import { ART, ppRegistry, Dimensions, StyleSheet, Text as NormText, TouchableWithoutFeedback, View, PanResponder } from 'react-native';
 const { Group, Shape, Surface, Transform, Text } = ART;
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
@@ -28,23 +28,24 @@ export default class CircleOfFifths extends Component {
     state = {
         paths: [],
         data: [
-            { "number": 5, "name": 'B' },
-            { "number": 5, "name": 'E' },
-            { "number": 5, "name": 'A' },
-            { "number": 5, "name": 'D' },
-            { "number": 5, "name": 'G' },
-            { "number": 5, "name": 'C' },
-            { "number": 5, "name": 'F' },
-            { "number": 5, "name": 'Bb' },
-            { "number": 5, "name": 'Eb' },
-            { "number": 5, "name": 'Ab' },
-            { "number": 5, "name": 'Db' },
-            { "number": 5, "name": 'Gb/F#' },
+            { "number": 5, "name": 'B', quality: 'vii.' },
+            { "number": 5, "name": 'E', quality: 'iii' },
+            { "number": 5, "name": 'A', quality: 'vi' },
+            { "number": 5, "name": 'D', quality: 'ii' },
+            { "number": 5, "name": 'G', quality: 'V7' },
+            { "number": 5, "name": 'C', quality: 'I' },
+            { "number": 5, "name": 'F', quality: 'IV' },
+            { "number": 5, "name": 'Bb', quality: '' },
+            { "number": 5, "name": 'Eb', quality: '' },
+            { "number": 5, "name": 'Ab', quality: '' },
+            { "number": 5, "name": 'Db', quality: '' },
+            { "number": 5, "name": 'Gb/F#', quality: '' },
         ],
         currentTouch: {},
         lastTouch: {},
         rotation: 0,
         centroids: [],
+        angles: [],
     }
 
     _value(item) { return item.number; }
@@ -53,7 +54,7 @@ export default class CircleOfFifths extends Component {
 
     _color(index) { return Theme.colors[index]; }
 
-    _createChart() {
+    _createChart(radius) {
         var arcs = d3.shape.pie()
             .value(this._value)
             (this.state.data);
@@ -61,34 +62,42 @@ export default class CircleOfFifths extends Component {
         var lines = [];
         var centers = [];
 
+        console.log(arcs[1].startAngle);
+        this.setState({angles: arcs.map(a => a.startAngle)});
+
         for (var i = 0; i < arcs.length; i++) {
             var path = d3.shape.arc()
-                .outerRadius(150 / 2)  // Radius of the pie 
+                .outerRadius(radius)  // Radius of the pie 
                 .padAngle(.05)    // Angle between sections
                 .innerRadius(30)  // Inner radius: to create a donut or pie
                 (arcs[i]);
 
             
             var center = d3.shape.arc()
-                .outerRadius(150 / 2)  // Radius of the pie 
+                .outerRadius(radius)  // Radius of the pie 
                 .padAngle(.05)    // Angle between sections
                 .innerRadius(30)  // Inner radius: to create a donut or pie
                 .centroid(arcs[i]);
 
-            console.log(center);
             lines.push(path);
             centers.push(center);
         }
 
-        console.log(lines.length);
-        console.log(arcs[0]);
-        console.log(centers);
+        console.log(arcs[1]);
         this.setState({ paths: lines, centroids: centers });
     }
 
     _distanceBetweenTwoPoints(first, second) {
         var distance = Math.sqrt(Math.pow(second.X - first.X, 2) + Math.pow(second.Y - first.Y, 2));
         return distance;
+    }
+
+    _onPieItemSelected = (index) => {
+        console.log('hallo');
+        console.log(this.state.angles);
+        var currentAngle = this.state.angles[index] * (180/Math.PI);
+        console.log(currentAngle);
+        this.setState({rotation: (360 - Math.abs(currentAngle))});
     }
 
     _setUpGestureHandler() {
@@ -107,101 +116,95 @@ export default class CircleOfFifths extends Component {
             },
             onPanResponderMove: (evt, gestureState) => {
                 // The most recent move distance is gestureState.move{X,Y}
+                if (gestureState.numberActiveTouches == 1)
+                {
+                    console.log(gestureState.moveX, gestureState.moveY);
 
-                console.log(gestureState.moveX, gestureState.moveY);
+                    if (this.state.lastTouch === {}) {
+                        this.setState({ currentTouch: { X: gestureState.moveX, Y: gestureState.moveY } });
+                        this.setState({ lastTouch: { X: 0, Y: 0 } });
+                    } else {
+                        this.setState({ lastTouch: this.state.currentTouch })
+                        this.setState({ currentTouch: { X: gestureState.moveX, Y: gestureState.moveY } });
 
-                if (this.state.lastTouch === {}) {
-                    this.setState({ currentTouch: { X: gestureState.moveX, Y: gestureState.moveY } });
-                    this.setState({ lastTouch: { X: 0, Y: 0 } });
-                } else {
-                    this.setState({ lastTouch: this.state.currentTouch })
-                    this.setState({ currentTouch: { X: gestureState.moveX, Y: gestureState.moveY } });
+                        triangle = {
+                            // magic numbers
+                            radiusPoint: { X: 190, Y: 415, },
+                            lastPoint: this.state.lastTouch,
+                            currentPoint: this.state.currentTouch,
 
-                    triangle = {
-                        // magic numbers
-                        radiusPoint: { X: 190, Y: 185, },
-                        lastPoint: this.state.lastTouch,
-                        currentPoint: this.state.currentTouch,
+                            a: {},
+                            b: {},
+                            c: {},
 
-                        a: {},
-                        b: {},
-                        c: {},
+                            theta: {},
+                        };
 
-                        theta: {},
-                    };
+                        // find angle
+                        triangle.a = this._distanceBetweenTwoPoints(triangle.lastPoint, triangle.currentPoint);
+                        triangle.b = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.lastPoint);
+                        triangle.c = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.currentPoint);
 
-                    // find angle
-                    triangle.a = this._distanceBetweenTwoPoints(triangle.lastPoint, triangle.currentPoint);
-                    triangle.b = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.lastPoint);
-                    triangle.c = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.currentPoint);
+                        triangle.theta = Math.acos((-Math.pow(triangle.a, 2) + Math.pow(triangle.b, 2) + Math.pow(triangle.c, 2)) / (2 * triangle.b * triangle.c))*(180/Math.PI);
 
-                    triangle.theta = Math.acos((-Math.pow(triangle.a, 2) + Math.pow(triangle.b, 2) + Math.pow(triangle.c, 2)) / (2 * triangle.b * triangle.c))*(180/Math.PI);
-
-                    //gross if statements for actual rotation
-                    if(triangle.currentPoint.Y > triangle.radiusPoint.Y 
-                        && triangle.currentPoint.X > triangle.lastPoint.X
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation - triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.Y > triangle.radiusPoint.Y 
-                        && triangle.currentPoint.X < triangle.lastPoint.X
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation + triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.Y < triangle.radiusPoint.Y 
-                        && triangle.currentPoint.X > triangle.lastPoint.X
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation + triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.Y < triangle.radiusPoint.Y 
-                        && triangle.currentPoint.X < triangle.lastPoint.X
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation - triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    
-                    else if(triangle.currentPoint.X < triangle.radiusPoint.X 
-                        && triangle.currentPoint.Y < triangle.lastPoint.Y
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation + triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.X < triangle.radiusPoint.X 
-                        && triangle.currentPoint.Y > triangle.lastPoint.Y
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation - triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.X > triangle.radiusPoint.X 
-                        && triangle.currentPoint.Y < triangle.lastPoint.Y
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation - triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
-                    }
-                    else if(triangle.currentPoint.X > triangle.radiusPoint.X 
-                        && triangle.currentPoint.Y > triangle.lastPoint.Y
-                        && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
-                    )
-                    {
-                        this.setState({rotation: this.state.rotation + triangle.theta});
-                        this.rotate = new Transform().translate(100.000000, 100.000000).rotate(this.state.rotation);
+                        //gross if statements for actual rotation
+                        if(triangle.currentPoint.Y > triangle.radiusPoint.Y 
+                            && triangle.currentPoint.X > triangle.lastPoint.X
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation - triangle.theta});
+                        }
+                        else if(triangle.currentPoint.Y > triangle.radiusPoint.Y 
+                            && triangle.currentPoint.X < triangle.lastPoint.X
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation + triangle.theta});
+                        }
+                        else if(triangle.currentPoint.Y < triangle.radiusPoint.Y 
+                            && triangle.currentPoint.X > triangle.lastPoint.X
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation + triangle.theta});
+                        }
+                        else if(triangle.currentPoint.Y < triangle.radiusPoint.Y 
+                            && triangle.currentPoint.X < triangle.lastPoint.X
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) < Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation - triangle.theta});
+                        }
+                        
+                        else if(triangle.currentPoint.X < triangle.radiusPoint.X 
+                            && triangle.currentPoint.Y < triangle.lastPoint.Y
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation + triangle.theta});
+                        }
+                        else if(triangle.currentPoint.X < triangle.radiusPoint.X 
+                            && triangle.currentPoint.Y > triangle.lastPoint.Y
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation - triangle.theta});
+                        }
+                        else if(triangle.currentPoint.X > triangle.radiusPoint.X 
+                            && triangle.currentPoint.Y < triangle.lastPoint.Y
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation - triangle.theta});
+                        }
+                        else if(triangle.currentPoint.X > triangle.radiusPoint.X 
+                            && triangle.currentPoint.Y > triangle.lastPoint.Y
+                            && Math.abs(triangle.currentPoint.Y - triangle.lastPoint.Y) > Math.abs(triangle.currentPoint.X - triangle.lastPoint.X)
+                        )
+                        {
+                            this.setState({rotation: this.state.rotation + triangle.theta});
+                        }
                     }
                 }
 
@@ -226,23 +229,22 @@ export default class CircleOfFifths extends Component {
     }
 
     componentWillMount() {
-        this.rotate = new Transform().translate(100.000000, 100.000000);
 
-        this._createChart();
+        this._createChart(130);
 
         this._setUpGestureHandler();
     }
 
     render() {
         const margin = styles.container.margin;
-        const x = 150 / 2 + margin;
-        const y = 150 / 2 + margin;
+        const x = Dimensions.get('window').width/2 + 20;
+        const y = Dimensions.get('window').height/2;
 
         return (
-            <View {...this._panResponder.panHandlers}>
-                <View style={styles.container}>
-                    <Surface width={200} height={200}>
-                        <Group x={x} y={y} transform={this.rotate}>
+            <View >
+                <View {...this._panResponder.panHandlers}>
+                    <Surface width={Dimensions.get('window').width} height={Dimensions.get('window').height}>
+                        <Group x={x} y={y} transform={new Transform().rotate(this.state.rotation)}>
                             {
                                 this.state.paths.map((item, index) =>
                                     (
@@ -258,12 +260,25 @@ export default class CircleOfFifths extends Component {
                                 this.state.data.map((item, index) => (
                                     <Text 
                                         key={'note_' + index} 
-                                        x={this.state.centroids[index][0]*1.8 + 100} 
-                                        y={this.state.centroids[index][1]*1.8 + 100} 
+                                        x={this.state.centroids[index][0]*2 } 
+                                        y={this.state.centroids[index][1]*2 } 
                                         alignment="middle" 
-                                        fill="#000" 
+                                        fill={this._color(index)} 
                                         font='bold 8px "Arial"'
-                                        transform={new Transform().translate(-100.000000, -100.000000).rotate(-this.state.rotation)}
+                                        transform={new Transform().rotate(-this.state.rotation)}
+                                    >{item.quality}</Text>
+                                ))
+                            }
+                            {
+                                this.state.data.map((item, index) => (
+                                    <Text 
+                                        key={'note_' + index} 
+                                        x={this.state.centroids[index][0]*1.9 } 
+                                        y={this.state.centroids[index][1]*1.9 } 
+                                        alignment="middle" 
+                                        fill={this._color(index)} 
+                                        font='bold 8px "Arial"'
+                                        transform={new Transform().rotate(-this.state.rotation)}
                                     >{item.name}</Text>
                                 ))
                             }
@@ -271,13 +286,13 @@ export default class CircleOfFifths extends Component {
                     </Surface>
 
                 </View>
-                <View style={{ position: 'absolute', top: 60, left: 2 * margin + this.props.pieWidth }}>
+                <View style={{ position: 'absolute', top: Dimensions.get('window').height/4, left: 10 }}>
                     {
                         this.state.data.map((item, index) => {
                             var fontWeight = this.state.highlightedIndex == index ? 'bold' : 'normal';
                             return (
-                                <TouchableWithoutFeedback key={index} onPress={() => this._onPieItemSelected(index)}>
-                                    <View>
+                                <TouchableWithoutFeedback key={index} index={index} onPress={() => this._onPieItemSelected(index)}>
+                                    <View style={{ paddingBottom: 15 }}>
                                         <NormText style={[styles.label, { color: this._color(index), fontWeight: fontWeight }]}>{this._label(item)}</NormText>
                                     </View>
                                 </TouchableWithoutFeedback>
@@ -295,5 +310,6 @@ var styles = StyleSheet.create(
         container: {
             margin: 60,
         },
-    });
+    }
+);
 
