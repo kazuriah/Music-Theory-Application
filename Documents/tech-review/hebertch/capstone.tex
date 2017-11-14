@@ -1,0 +1,148 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+% 1. Fill in these details
+\def \CapstoneTeamName{		Team TriTone}
+\def \CapstoneTeamNumber{		045}
+\def \GroupMemberOne{			Christopher Hebert}
+\def \GroupMemberTwo{			Aidan O'Malley}
+\def \GroupMemberThree{			Kazuriah Buckley}
+\def \CapstoneProjectName{		Interactive Music Theory Application}
+\def \CapstoneSponsorPerson{		Lukas Hein}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		%Problem Statement
+				%Requirements Document
+  Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+          This document outlines several technology-related design decisions specifically about the composition page.
+          Methods for chord entry, chord editing, and composition analysis are discussed. 
+          Decisions are made about which technologies to choose.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+
+\section{Composition Page: Chord Entry}
+\subsection{Overview}
+In order for users to create compositions they need to be able to enter chords. 
+These chords will be based on a root tone and need to have a specific quality. 
+\subsection{Criteria}
+The mechanism for chord entry should be able to handle: choosing a root tone from one of the 12 tones, choosing minor or major chord quality, and choosing whether the 7th is present and its quality. 
+Intervals beyond the 7th are outside the scope of this application. 
+\subsection{Potential Choices}
+\subsubsection{Keyboard Style Chord Entry}
+The keyboard style chord entry would have a text area for writing out the chords, as well as a grid layout of buttons for chord entry. 
+The grid of buttons would contain note names, qualities, and intervals. 
+For example, if the user wanted to enter "B minor 7th", they would push "B", "m", "7" buttons in that order, and the text area would be populated with "Bm7". 
+\subsubsection{Circle of Fifths Style Chord Entry}
+The circle of fifths style chord entry would use a circle of fifths for tone entry, as well as two groups of radio buttons for chord quality and 7th interval quality.
+
+The user would touch any of the notes on the circle of fifths to determine the root tone of the chord. 
+The chord quality radio buttons would be either major or minor. 
+The 7th interval quality could be none, 7th, major 7th, or diminished 7th. 
+\subsubsection{Grid of Radio Buttons}
+The third choice uses: a set of radio buttons to determine tone, a set of radio buttons to determine chord quality, and a set of radio buttons to determine the presence and quality of the 7th. 
+\subsection{Discussion}
+The grid of radio buttons is the simplest choice to implement, although the circle of fifths entry would be about the same amount of work. 
+The keyboard style entry, originally suggested by our client Lukas, would be the most complicated method of entry. 
+It would be easy for a user to enter an invalid chord, for instance. 
+The keyboard method may be more appropriate for composition apps which allow for more complicated and detailed chords. 
+The circle of fifths method of chord entry has the added benefit of training people to memorize the circle, just  by composing. 
+The circle of fifths is a valuable thing for composers to have at their fingertips and by forcing them to use it for chord entry, they would develop muscle memory for spatial relationships of the 12 keys. 
+\subsection{Conclusion}
+In conclusion we will be implementing the Circle of Fifths style chord entry, since it solves the problem simply and effectively, and has the added benefit of drilling muscle memory for users.
+
+\section{Composition Page: Chord Editing}
+\subsection{Overview}
+As users create compositions they may realize that they want to make a change to a chord that had already been chosen. 
+\subsection{Criteria}
+The only criteria for editing chords is that the user starts with a composition that they don't want, and ends up with a composition that they do want (or at least thought that they wanted). 
+\subsection{Potential Choices}
+\subsubsection{Chords are Implemented as Text Elements with Touch Events}
+Having chords in a composition as text elements gives them the appearance of being plain text. They can be drawn in sequence. In order to make them editable, they will have a touch event registered to them. When the user touches them, the event will trigger the chord entry to begin changing the chord that the user touched. 
+\subsubsection{Chords are Implemented as Buttons}
+In this scenario the chords are implemented as buttons. It will be obvious to the user that something will happen if they push the chord buttons. When the user pushes a button, chord entry will begin and the user can change the chord that she or he picked. 
+\subsubsection{Chords are Implemented as Text Elements}
+In this scenario, the chords are implemented as text elements, but they are not directly editable. If the user wishes to change the composition, he or she can remember the composition they were editing and start a new one with the change implemented. 
+\subsection{Discussion}
+The third option may seem undesirable at first, but given that the composition page will not play any compositions audibly, users would be encouraged to keep their compositions short. Additionally if they had ideas for compositions that they wanted to remember, they would be encouraged to write them down for themselves. This is also the simplest to implement. 
+Implementing chords as buttons is the next choice in terms of simplicity. It would also have the advantage of making the user aware that the chords are editable. 
+\subsection{Conclusion}
+In conclusion we will be implementing the chords as text elements, without direct editability. This choice is the simplest, and matches the goals of the app the best. The purpose of the composition page is to demonstrate the rules of the schedule of tonal gravity. Once users have a solid foundation in these rules, they won't have much need for the composition portion of the app. 
+ 
+\section{Composition Page: Analysis}
+\subsection{Overview}
+The purpose of the composition page is to analyze user compositions according to the rules of the Schedule of Tonal Gravity (henceforth referred to as "the rules"). This analysis happens between at most two chords. 
+\subsection{Criteria}
+The user needs to be able to find out if a chord or pair of chords follow the rules. 
+\subsection{Potential Choices}
+\subsubsection{User Picks a Single Chord to Have Analyzed}
+In this scenario the user would push a button closely associated with the chord they would like to have analyzed. The chord would be compared to the previous chord (or no chord, in the case of the first chord) to determine whether the chord was a valid choice. 
+\subsubsection{Entire Composition is Analyzed}
+In this scenario, the user would push a button that would analyze or re-analyze the entire composition, looping over each chord and pair of chords to determine which followed the rules. 
+\subsubsection{Composition is Analyzed when Chord is Added or Changed}
+If a chord is added, that chord would immediately be analyzed. If a chord is changed, that chord, as well as the subsequent chord, would be re-analyzed. 
+\subsection{Discussion}
+Having the user pick a single chord to analyze would give the user the opportunity to fine-tune how much feedback they got from the app. However, this would be cumbersome if they wanted to know the results of the analysis of several results all at once. For this, the other two options would be better. 
+Unlike re-analyzing when a chord is added or changed, if the entire composition is analyzed at the push of a button, the user would have an opportunity to think about whether the composition fit the rules. 
+\subsection{Conclusion}
+In conclusion we will be implementing the entire composition being analyzed at the push of a button (choice 2). This is the happy middle ground for feedback.
+
+\end{document}
