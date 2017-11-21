@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.10.19)  13 NOV 2017 20:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.19)  21 NOV 2017 10:23
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **capstone.tex
 (./capstone.tex
@@ -24,7 +24,7 @@ File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 -- Using IEEE Computer Society mode.
 -- Using 8.5in x 11in (letter) paper.
--- Using DVI output.
+-- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen105
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen106
@@ -132,10 +132,18 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count94
 ))
 \Gin@req@height=\dimen126
 \Gin@req@width=\dimen127
@@ -152,7 +160,7 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
@@ -161,9 +169,9 @@ Package ifvtex Info: VTeX not detected.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count94
-\Gm@cntv=\count95
-\c@Gm@tempcnt=\count96
+\Gm@cnth=\count95
+\Gm@cntv=\count96
+\c@Gm@tempcnt=\count97
 \Gm@bindingoffset=\dimen128
 \Gm@wd@mp=\dimen129
 \Gm@odd@mp=\dimen130
@@ -177,24 +185,81 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 (./capstone.aux)
 \openout1 = `capstone.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 -- Lines per column: 39 (approximate, difference = 14.73578pt).
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count98
+\scratchdimen=\dimen136
+\scratchbox=\box28
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen137
+\MPnumerator=\count102
+\makeMPintoPDFobject=\count103
+\everyMPtoPDFconversion=\toks18
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -225,52 +290,148 @@ LaTeX Font Info:    ... okay on input line 35.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-File: coe_v_spot1.eps Graphic file (type eps)
-<coe_v_spot1.eps>
+Package epstopdf Info: Source file: <coe_v_spot1.eps>
+(epstopdf)                    date: 2017-11-13 18:15:32
+(epstopdf)                    size: 631574 bytes
+(epstopdf)             Output file: <coe_v_spot1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-11-21 08:45:28
+(epstopdf)                    size: 31040 bytes
+(epstopdf)             Command: <repstopdf --outfile=coe_v_spot1-eps-converted-
+to.pdf coe_v_spot1.eps>
+(epstopdf)             \includegraphics on input line 40.
+Package epstopdf Info: Output file is already uptodate.
+<coe_v_spot1-eps-converted-to.pdf, id=1, 346.29375pt x 436.63126pt>
+File: coe_v_spot1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use coe_v_spot1-eps-converted-to.pdf>
+Package pdftex.def Info: coe_v_spot1-eps-converted-to.pdf used on input line 40
+.
+(pdftex.def)             Requested size: 90.26146pt x 113.81102pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <20.075> not available
-(Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 49.
+(Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <24.09> not available
-(Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 49.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 65.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+(Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 50.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 59.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8.03> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 65.
-
-[1]
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 59.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./coe_v_spot1-eps-conve
+rted-to.pdf>]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <11.04124> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
-(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 74.
- (./capstone.toc
-LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 2.
+(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 68.
+
+(./capstone.toc
+LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.53561> on input line 2.
+(Font)              <9.53561> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6.6749> on input line 2.
+(Font)              <6.6749> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.7678> on input line 2.
+(Font)              <4.7678> on input line 3.
 )
 \tf@toc=\write3
 \openout3 = `capstone.toc'.
 
- [1]
+ (./capstone.lof)
+\tf@lof=\write4
+\openout4 = `capstone.lof'.
+
+ [1] [2]
+<garageband.png, id=26, 538.01pt x 210.7875pt>
+File: garageband.png Graphic file (type png)
+ <use garageband.png>
+Package pdftex.def Info: garageband.png used on input line 85.
+(pdftex.def)             Requested size: 126.47249pt x 49.54793pt.
+
+<chord.png, id=28, 481.8pt x 925.4575pt>
+File: chord.png Graphic file (type png)
+ <use chord.png>
+Package pdftex.def Info: chord.png used on input line 93.
+(pdftex.def)             Requested size: 126.47249pt x 242.92917pt.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 83.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
+ [3
+
+ <./garageband.png> <./chord.png>]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 90.
- [2
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 119.
+ <keyboard.png, id=34, 1996.45876pt x 1123.19624pt>
+File: keyboard.png Graphic file (type png)
 
-] [3] [4] (./capstone.aux) ) 
+<use keyboard.png>
+Package pdftex.def Info: keyboard.png used on input line 121.
+(pdftex.def)             Requested size: 252.94499pt x 142.30156pt.
+ <circle.png, id=35, 1855.93375pt x 2092.81876pt>
+File: circle.png Graphic file (type png)
+
+<use circle.png>
+Package pdftex.def Info: circle.png used on input line 131.
+(pdftex.def)             Requested size: 252.94499pt x 285.20078pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<radio.png, id=36, 1977.3875pt x 931.48pt>
+File: radio.png Graphic file (type png)
+ <use radio.png>
+Package pdftex.def Info: radio.png used on input line 142.
+(pdftex.def)             Requested size: 252.94499pt x 119.14943pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./keyboard.png>] [5 <./circle.png> <./radio.png>] [6]
+<analyze-each.png, id=51, 1603.9925pt x 625.33624pt>
+File: analyze-each.png Graphic file (type png)
+ <use analyze-each.png>
+Package pdftex.def Info: analyze-each.png used on input line 230.
+(pdftex.def)             Requested size: 252.94499pt x 98.60547pt.
+
+<analyze-all.png, id=52, 1634.105pt x 668.4975pt>
+File: analyze-all.png Graphic file (type png)
+ <use analyze-all.png>
+Package pdftex.def Info: analyze-all.png used on input line 239.
+(pdftex.def)             Requested size: 252.94499pt x 103.47324pt.
+
+[7 <./analyze-each.png> <./analyze-all.png>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 282.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 299--303
+\OT1/pcr/m/n/8.03 https://uxplanet.org/button-ux-design-best-practices-types-an
+d-states-647cf4ae0fc6?gi=bc6cdbd6bca1
+ []
+
+[8] [9] (./capstone.aux) ) 
 Here is how much of TeX's memory you used:
- 2045 strings out of 494986
- 33606 string characters out of 6180381
- 93424 words of memory out of 5000000
- 5290 multiletter control sequences out of 15000+600000
- 29378 words of font info for 72 fonts, out of 8000000 for 9000
+ 3087 strings out of 494985
+ 49456 string characters out of 6180355
+ 114156 words of memory out of 5000000
+ 6245 multiletter control sequences out of 15000+600000
+ 46345 words of font info for 94 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 26i,5n,19p,397b,222s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,23p,236b,252s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8
+r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatin
+o/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pf
+b>
+Output written on capstone.pdf (10 pages, 4375474 bytes).
+PDF statistics:
+ 90 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on capstone.dvi (5 pages, 22088 bytes).
