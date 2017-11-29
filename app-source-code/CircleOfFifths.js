@@ -28,18 +28,18 @@ export default class CircleOfFifths extends Component {
     state = {
         paths: [],
         data: [
-            { "number": 5, "name": 'B', quality: 'vii.' },
-            { "number": 5, "name": 'E', quality: 'iii' },
-            { "number": 5, "name": 'A', quality: 'vi' },
-            { "number": 5, "name": 'D', quality: 'ii' },
-            { "number": 5, "name": 'G', quality: 'V7' },
-            { "number": 5, "name": 'C', quality: 'I' },
-            { "number": 5, "name": 'F', quality: 'IV' },
-            { "number": 5, "name": 'Bb', quality: '' },
-            { "number": 5, "name": 'Eb', quality: '' },
-            { "number": 5, "name": 'Ab', quality: '' },
-            { "number": 5, "name": 'Db', quality: '' },
-            { "number": 5, "name": 'Gb/F#', quality: '' },
+            { "number": 5, "name": 'B', quality: 'vii.', mQuality: ''  },
+            { "number": 5, "name": 'E', quality: 'iii', mQuality: '' },
+            { "number": 5, "name": 'A', quality: 'vi', mQuality: '' },
+            { "number": 5, "name": 'D', quality: 'ii', mQuality: 'ii.' },
+            { "number": 5, "name": 'G', quality: 'V7', mQuality: 'V7' },
+            { "number": 5, "name": 'C', quality: 'I', mQuality: 'i' },
+            { "number": 5, "name": 'F', quality: 'IV', mQuality: 'iv' },
+            { "number": 5, "name": 'Bb', quality: '', mQuality: 'bVII' },
+            { "number": 5, "name": 'Eb', quality: '', mQuality: 'bIII' },
+            { "number": 5, "name": 'Ab', quality: '', mQuality: 'bVI' },
+            { "number": 5, "name": 'Db', quality: '', mQuality: '' },
+            { "number": 5, "name": 'Gb/F#', quality: '', mQuality: '' },
         ],
         currentTouch: {},
         lastTouch: {},
@@ -63,7 +63,9 @@ export default class CircleOfFifths extends Component {
         var centers = [];
 
         console.log(arcs[1].startAngle);
-        this.setState({angles: arcs.map(a => a.startAngle)});
+        this.setState({angles: arcs.map(a => {
+                return {startAngle: a.startAngle, endAngle: a.endAngle}
+        })});
 
         for (var i = 0; i < arcs.length; i++) {
             var path = d3.shape.arc()
@@ -83,8 +85,15 @@ export default class CircleOfFifths extends Component {
             centers.push(center);
         }
 
-        console.log(arcs[1]);
         this.setState({ paths: lines, centroids: centers });
+
+        //put C to top
+        let cIndex = 5;
+        let currentStartAngle = arcs[cIndex].startAngle * (180/Math.PI);
+        let currentEndAngle = arcs[cIndex].endAngle * (180/Math.PI);
+        //rotate this note to the top
+        this.setState({rotation: (360 - Math.abs(currentStartAngle) - Math.abs(currentEndAngle-currentStartAngle)/2)});
+        
     }
 
     _distanceBetweenTwoPoints(first, second) {
@@ -92,12 +101,49 @@ export default class CircleOfFifths extends Component {
         return distance;
     }
 
+    _lockWheel() {
+        let min = 10;
+        let index;
+        this.state.angles.forEach( (item, i) => {
+            if(Math.abs(item.startAngle + this.state.rotation) % 2*Math.PI < min)
+            {
+                min = Math.abs(item.startAngle);
+                index = i;
+            }
+        });
+        let currentStartAngle = Math.abs(this.state.rotation + this.state.angles[index].startAngle) * (180/Math.PI);
+        let currentEndAngle = Math.abs(this.state.rotation + this.state.angles[index].endAngle) * (180/Math.PI);
+        //rotate this note to the top
+        this.setState({rotation: (360 - Math.abs(currentStartAngle) - Math.abs(currentEndAngle-currentStartAngle)/2)});
+    }
+
     _onPieItemSelected = (index) => {
-        console.log('hallo');
-        console.log(this.state.angles);
-        var currentAngle = this.state.angles[index] * (180/Math.PI);
-        console.log(currentAngle);
-        this.setState({rotation: (360 - Math.abs(currentAngle))});
+        var currentStartAngle = this.state.angles[index].startAngle * (180/Math.PI);
+        var currentEndAngle = this.state.angles[index].endAngle * (180/Math.PI);
+        //rotate this note to the top
+        this.setState({rotation: (360 - Math.abs(currentStartAngle) - Math.abs(currentEndAngle-currentStartAngle)/2)});
+        //change chord qualities
+        this._changeMajorQualities(index);
+    }
+
+    _changeMajorQualities = (index) => {
+        const majorQualities = ['vii.', 'iii', 'vi', 'ii', 'V7', 'I', 'IV'];
+        const minorQualities = ['ii.', 'V7', 'i', 'iv', 'bVII', 'bIII', 'bVI'];
+        let newQualities = ['','','','','','','','','','','',''];
+        
+        let j=0;
+        let start = (index+7)%12;
+        for(let i= start; i < start+7; i++)
+        {
+            newQualities[i%12] = majorQualities[j++];
+        }
+
+        this.setState({data: this.state.data.map( (a,index) => {
+                a.quality = newQualities[index];
+                //a.mQuality = minorQualities[index];
+                return a;
+            })
+        });
     }
 
     _setUpGestureHandler() {
@@ -140,7 +186,7 @@ export default class CircleOfFifths extends Component {
                             theta: {},
                         };
 
-                        // find angle
+                        // find angle with law of cosines
                         triangle.a = this._distanceBetweenTwoPoints(triangle.lastPoint, triangle.currentPoint);
                         triangle.b = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.lastPoint);
                         triangle.c = this._distanceBetweenTwoPoints(triangle.radiusPoint, triangle.currentPoint);
@@ -215,6 +261,7 @@ export default class CircleOfFifths extends Component {
             onPanResponderRelease: (evt, gestureState) => {
                 // The user has released all touches while this view is the
                 // responder. This typically means a gesture has succeeded
+                //this._lockWheel();
             },
             onPanResponderTerminate: (evt, gestureState) => {
                 // Another component has become the responder, so this gesture
@@ -230,9 +277,14 @@ export default class CircleOfFifths extends Component {
 
     componentWillMount() {
 
-        this._createChart(130);
-
+        this._createChart(100);
         this._setUpGestureHandler();
+        //put C to top
+        // var currentStartAngle = this.state.angles[6].startAngle * (180/Math.PI);
+        // var currentEndAngle = this.state.angles[6].endAngle * (180/Math.PI);
+        // //rotate this note to the top
+        // this.setState({rotation: (360 - Math.abs(currentStartAngle) - Math.abs(currentEndAngle-currentStartAngle)/2)});
+        
     }
 
     render() {
@@ -264,7 +316,7 @@ export default class CircleOfFifths extends Component {
                                         y={this.state.centroids[index][1]*2 } 
                                         alignment="middle" 
                                         fill={this._color(index)} 
-                                        font='bold 8px "Arial"'
+                                        font='bold 10px "Arial"'
                                         transform={new Transform().rotate(-this.state.rotation)}
                                     >{item.quality}</Text>
                                 ))
@@ -277,22 +329,48 @@ export default class CircleOfFifths extends Component {
                                         y={this.state.centroids[index][1]*1.9 } 
                                         alignment="middle" 
                                         fill={this._color(index)} 
-                                        font='bold 8px "Arial"'
+                                        font='bold 12px "Arial"'
                                         transform={new Transform().rotate(-this.state.rotation)}
                                     >{item.name}</Text>
+                                ))
+                            }
+                            {
+                                this.state.data.map((item, index) => (
+                                    <Text 
+                                        key={'note_' + index} 
+                                        x={this.state.centroids[index][0] } 
+                                        y={this.state.centroids[index][1] } 
+                                        alignment="middle" 
+                                        fill='#000' 
+                                        font='bold 10px "Arial"'
+                                        transform={new Transform().rotate(-this.state.rotation)}
+                                    >{item.mQuality}</Text>
+                                ))
+                            }
+                            {
+                                this.state.data.map((item, index) => (
+                                    <Text 
+                                        key={'note_' + index} 
+                                        x={this.state.centroids[index][0]*2.5 } 
+                                        y={this.state.centroids[index][1]*2.5 } 
+                                        alignment="middle" 
+                                        fill='#000' 
+                                        font='bold 10px "Arial"'
+                                        transform={new Transform().rotate(-this.state.rotation)}
+                                    >{item.mQuality}</Text>
                                 ))
                             }
                         </Group>
                     </Surface>
 
                 </View>
-                <View style={{ position: 'absolute', top: Dimensions.get('window').height/4, left: 10 }}>
+                <View style={{ position: 'absolute', top: 10, left: 10 }}>
                     {
                         this.state.data.map((item, index) => {
                             var fontWeight = this.state.highlightedIndex == index ? 'bold' : 'normal';
                             return (
                                 <TouchableWithoutFeedback key={index} index={index} onPress={() => this._onPieItemSelected(index)}>
-                                    <View style={{ paddingBottom: 15 }}>
+                                    <View style={{ padding: 15 }}>
                                         <NormText style={[styles.label, { color: this._color(index), fontWeight: fontWeight }]}>{this._label(item)}</NormText>
                                     </View>
                                 </TouchableWithoutFeedback>
