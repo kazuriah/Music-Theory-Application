@@ -4,6 +4,7 @@ Senior Capstone
 [github.io](https://kazuriah.github.io/Music-Theory-Application/)
 
 ## Links of Interest to the Grader:
+- 12/01/17 [Design Doc](Documents/design)
 - 11/13/17 [Tech Reviews](Documents/tech-review)
 	- [hebertch](Documents/tech-review/hebertch)
 - 11/13/17 [Final Draft of Requirements](Documents/requirements/final-draft)
@@ -18,6 +19,8 @@ Senior Capstone
   - [requirements](Documents/requirements): Drafts of the Requirements documents
   - [problem-statements](Documents/problem-statement): Individual and Final Problem Statement Assignments
   - [latex-template](Documents/latex-template): Capstone-specific templates for LaTex files
+	- [tech-review](Documents/tech-review)
+	- [design](Documents/design)
 - [notes](notes): Notes for and from meetings.
 - [prototypes](prototypes): Prototypes, scans of drawings, and ideas for the app.
   - [compose](prototypes/compose): Web-based prototype of how composing might look/feel in the app.
