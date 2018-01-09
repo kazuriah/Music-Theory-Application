@@ -1,10 +1,12 @@
 /** * Sample React Native App * https://github.com/facebook/react-native */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ART, ppRegistry, Dimensions, StyleSheet, Text as NormText, TouchableWithoutFeedback, View, PanResponder } from 'react-native';
 const { Group, Shape, Surface, Transform, Text } = ART;
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
 import * as d3Array from 'd3-array';
+import { changeKey } from './actions/keys';
 
 const d3 = {
     scale,
@@ -24,7 +26,7 @@ const Theme = {
     ]
 };
 
-export default class CircleOfFifths extends Component {
+class CircleOfFifths extends Component {
     state = {
         paths: [],
         data: [
@@ -118,6 +120,8 @@ export default class CircleOfFifths extends Component {
     }
 
     _onPieItemSelected = (index) => {
+        this.props.changeKey(index);
+        console.log(this.props.currentKey);
         var currentStartAngle = this.state.angles[index].startAngle * (180/Math.PI);
         var currentEndAngle = this.state.angles[index].endAngle * (180/Math.PI);
         //rotate this note to the top
@@ -382,6 +386,16 @@ export default class CircleOfFifths extends Component {
         );
     }
 }
+
+mapStateToProps = (state) => ({
+    currentKey: state.keys.currentKey,
+});
+
+mapDispatchToProps = (dispatch) => ({
+    changeKey: (newKey) => dispatch(changeKey(newKey)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CircleOfFifths);
 
 var styles = StyleSheet.create(
     {
