@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb",
+    "plugins": [ "react", "babel" ],
+    "parser": "babel-eslint",
+    "rules": {
+        "no-invalid-this": 0,
+        "babel/no-invalid-this": 1,
+        "no-underscore-dangle": 0,
+        "no-plusplus": 0,
+        "no-mixed-operators": 0,
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "max-len": 0
+    }
+}
