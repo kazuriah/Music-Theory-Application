@@ -20,8 +20,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// NOTE(chebert): why is the CofContainer in a separate module from
-// CircleOfFifths?
 const CofContainer = () => (
   <View style={styles.container}>
     {art}
